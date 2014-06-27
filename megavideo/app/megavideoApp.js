@@ -2,8 +2,7 @@ angular.module('megaVideoDemo', []).
 	directive('megaVideo', function() {
 		return {
 			restrict: 'E',
-			templateUrl: './mega-video.html',
-			transclude: true,
+			templateUrl: 'mega-video.html',
 			scope: true,
 			link: function($scope, element, attrs) {
 				$scope._videoPlayer = element.find('video')[0];
