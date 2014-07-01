@@ -1,12 +1,15 @@
 angular.module('megaVideoDemo', []).
-	directive('megaVideo', function() {
+	directive('megaVideo', function($sce) {
 		return {
 			restrict: 'E',
 			templateUrl: 'mega-video.html',
 			scope: true,
-			link: function($scope, element, attrs) {
-				$scope._videoPlayer = element.find('video')[0];
-				
+			link: function(scope, element, attrs) {
+				scope._videoPlayer = element.find('video')[0];
+				scope.sources = [];
+				function trustSrc (url){
+					return $sce.trustAsResourceUrl(url);
+				}
 				// whitelist of video formats accepted
 				var _sourceTypes = {
 					webmSrc: { type: 'video/webm'},
@@ -16,21 +19,17 @@ angular.module('megaVideoDemo', []).
 				}
 				for (srcType in _sourceTypes) {
 					if (attrs.hasOwnProperty(srcType)) {
-						$scope.sources.push(
+						scope.sources.push(
 							{ type: _sourceTypes[srcType].type, 
-							  src: attrs[srcType]
+							  src: trustSrc(attrs[srcType])
 							}
 						);
 					}
 				}
-				$scope.video.width = attrs.hasOwnProperty('width') ? $scope.video.width = attrs.width : "";
-				$scope.video.height = attrs.hasOwnProperty('height') ? $scope.video.height = attrs.height : "";
+				scope.video.width = attrs.hasOwnProperty('width') ? scope.video.width = attrs.width : "";
+				scope.video.height = attrs.hasOwnProperty('height') ? scope.video.height = attrs.height : "";
 			},
-			controller: function($scope, $sce) {
-				$scope.sources = [];
-				$scope.trustSrc = function(url){
-					return $sce.trustAsResourceUrl(url);
-				}
+			controller: function($scope) {
 				$scope.video =  {
 					play: function() {
 						$scope._videoPlayer.play();

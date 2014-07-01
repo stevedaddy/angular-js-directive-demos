@@ -5,7 +5,7 @@
 	ng-dblclick="video.stop()">
 
 	<source  ng-repeat="source in sources" 
-		ng-src="{{ trustSrc(source.src) }}" 
+		ng-src="{{ source.src }}" 
 		type="{{ source.type }}">
 	</source>
 
