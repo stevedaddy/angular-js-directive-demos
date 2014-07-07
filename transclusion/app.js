@@ -2,12 +2,9 @@ var app = angular.module('myApp', []);
 
 app.directive('yoYo', function() {
     return {
-        link: function($scope, element, attrs) {
-            element.on('click', function() {
-                $scope.$apply(function() {
-                    //fire the onClick function
-                    $scope.$eval(attrs.myClick);
-                });
-            });
-        },
+        restrict: 'E',
+        transclude: true,
+        template: '<div class="yo-yo">Yo <span ng-transclude></span>!</div>',
+        replace: true
+    }
 });
