@@ -4,9 +4,6 @@
 	ng-click="video.togglePlay()" 
 	ng-dblclick="video.stop()">
 
-	<source  ng-repeat="source in sources" 
-		ng-src="{{ source.src }}" 
-		type="{{ source.type }}">
-	</source>
+	<div ng-transclude></div>
 
 </video>
