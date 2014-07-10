@@ -3,51 +3,52 @@ angular.module('megaVideoDemo', []).
 		return {
 			restrict: 'E',
 			templateUrl: 'mega-video.html',
-			scope: true,
+			scope: {},
 			link: function(scope, element, attrs) {
-				scope._videoPlayer = element.find('video')[0];
-				scope.sources = [];
-				function trustSrc (url){
-					return $sce.trustAsResourceUrl(url);
-				}
-				// whitelist of video formats accepted
-				var _sourceTypes = {
-					webmSrc: { type: 'video/webm'},
-					mp4Src: { type: 'video/mp4'},
-					oggSrc: { type: 'video/ogg'}
-					// etc...
-				}
-				for (srcType in _sourceTypes) {
-					if (attrs.hasOwnProperty(srcType)) {
-						scope.sources.push(
-							{ type: _sourceTypes[srcType].type, 
-							  src: trustSrc(attrs[srcType])
-							}
-						);
+				scope.videoPlayer = element.find('video')[0];
+				function processSources() {
+					var _sourceTypes = {
+						webm: { type: 'video/webm'},
+						mp4: { type: 'video/mp4'},
+						ogv: { type: 'video/ogg'}
+						// etc...
+					}
+					for (source in _sourceTypes) {
+						if (attrs.hasOwnProperty(source)) {
+							scope.sources.push(
+								{ type: _sourceTypes[source].type, 
+								  src: $sce.trustAsResourceUrl(attrs[source])
+								}
+							);
+						}
 					}
 				}
-				scope.video.width = attrs.hasOwnProperty('width') ? scope.video.width = attrs.width : "";
-				scope.video.height = attrs.hasOwnProperty('height') ? scope.video.height = attrs.height : "";
+				processSources();
 			},
-			controller: function($scope) {
+			controller: function($scope, $sce, $attrs) {
+				$scope.sources = [];
+				$scope.videoPlayer = "";
 				$scope.video =  {
 					play: function() {
-						$scope._videoPlayer.play();
+						$scope.videoPlayer.play();
 						$scope.video.status = 'play';
+						console.log()
 					},
 					pause: function() {
-						$scope._videoPlayer.pause();
+						$scope.videoPlayer.pause();
 						$scope.video.status = 'pause';
 					},
 					stop: function() {
-						$scope._videoPlayer.pause();
-						$scope._videoPlayer.currentTime = 0;
+						$scope.videoPlayer.pause();
+						$scope.videoPlayer.currentTime = 0;
 						$scope.video.status = 'stop'
 
 					},
 					togglePlay: function() {
-						$scope.video.status == 'play' ? $scope.video.pause() : $scope.video.play();
-					}
+						$scope.video.status == 'play' ? this.pause() : this.play();
+					},
+					width: $attrs.width,
+					height:$attrs.height,
 				};
 			},
 		}
