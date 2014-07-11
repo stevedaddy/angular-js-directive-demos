@@ -15,9 +15,11 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'app/components/**/*Spec.js',
-      'app/components/**/spec.js',
-      'app/components/**/*spec.js'
+      './app/bower_components/angular/angular.min.js',
+      './app/bower_components/angular-mocks/angular-mocks.js',
+      './app/app.js',
+      './app/components/yo-directive.js',
+      './app/components/yo-directive-spec.js',
     ],
 
 
