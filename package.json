@@ -1,6 +1,0 @@
-{
-  "name": "directive-demos",
-  "devDependencies": {
-    "http-server": "^0.6.1"
-  }
-}
