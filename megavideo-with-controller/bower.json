@@ -1,0 +1,24 @@
+{
+  "name": "megavideo",
+  "version": "0.0.0",
+  "homepage": "https://github.com/Thinkful/angular-js-directive-demos",
+  "authors": [
+    "Benjamin White <benjamin.e.white1@gmail.com>"
+  ],
+  "moduleType": [
+    "globals"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.2.18",
+    "angular-mocks": "~1.2.19"
+  }
+}
