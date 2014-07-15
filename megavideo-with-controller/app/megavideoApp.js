@@ -6,8 +6,7 @@ angular.module('megaVideoDemo', []).
             scope: true,
             transclude: true,
             controller: function($scope, $element, $attrs){
-                var videoPlayer = $element.find('video')[0];
-                ctrl = this;
+                var videoPlayer = $element.find('video')[0]
                 $scope.video =  {
                     play: function() {
                         videoPlayer.play();
@@ -28,6 +27,9 @@ angular.module('megaVideoDemo', []).
                     width: $attrs.width,
                     height: $attrs.height
                 }
+                
+                // what we'll expose to outside world
+                var ctrl = this;
                 this.setVolume = function(level) {
                     videoPlayer.volume = level;
                 }
@@ -58,14 +60,14 @@ angular.module('megaVideoDemo', []).
     })
     .directive('volumeSlider', function(){
         return {
-            require: '^megaVideo',
+            require: '?^megaVideo',
             restrict: 'A',
             link: function(scope, element, attrs, megaVideoController) {
                 var initialVolume = parseFloat(attrs.initialVolume);
                 megaVideoController.setVolume(initialVolume);
                 angular.element(element.slider({
                     min: 0,
-                    max: 0.99,
+                    max: 1,
                     step: 0.01,
                     value: initialVolume,
                     orientation: "horizontal",
