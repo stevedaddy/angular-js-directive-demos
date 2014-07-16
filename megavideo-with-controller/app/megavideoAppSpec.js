@@ -23,7 +23,7 @@ describe('megaVideo', function() {
 		html += "	ogg='" + oggSrc + "'" ;
 		html += "	mp4='" + mp4Src + "'>" ;
 		html += "<p>" + transcludedText + "</p>";
-		html += "<\/mega-video>";
+		html += "</mega-video>";
 
 		scope = $rootScope.$new();
 		compiled = $compile(html)
@@ -62,7 +62,8 @@ describe('volumeSlider', function() {
 		oggSrc,
 		volumeSlider,
 		initialVolume,
-		changedVolume;
+		changedVolume,
+		videoPlayer;
 
 	beforeEach(module("megaVideoDemo"));
 	beforeEach(module('mega-video.html'));
@@ -79,7 +80,7 @@ describe('volumeSlider', function() {
 		html += "	ogg='" + oggSrc + "'" ;
 		html += "	mp4='" + mp4Src + "'>" ;
 		html += "	<div volume-slider initial-volume='" + initialVolume + "' ></div>";
-		html += "<\/mega-video>";
+		html += "</mega-video>";
 
 		scope = $rootScope.$new();
 		compiled = $compile(html);
@@ -87,8 +88,11 @@ describe('volumeSlider', function() {
 		scope.$digest();
 	}));
 	it('should have a functioning volume slider with correct initial position', function(){
+		videoPlayer = element.find('video')[0];
 		volumeSlider = element.find('.ui-slider');
 		expect(volumeSlider).toBeTruthy();
 		expect(volumeSlider.slider("option", "value")).toBe(parseFloat(initialVolume));
+		volumeSlider.slider("option", "value", changedVolume);
+		expect(videoPlayer.volume).toBe(changedVolume);
 	})
 });

@@ -75,6 +75,11 @@ angular.module('megaVideoDemo', []).
                         scope.$apply(function(){
                             megaVideoController.setVolume(ui.value);
                         })
+                    },
+                    change: function(event, ui) {
+                        scope.$apply(function(){
+                            megaVideoController.setVolume(ui.value);
+                        })
                     }
                 }));
             }
