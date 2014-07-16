@@ -18,8 +18,8 @@ describe('megaVideo', function() {
 		html += "<mega-video ";
 		html += "	width=\"60%\" ";
 		html += "	ogg='" + oggSrc + "'" ;
-		html += "	mp4='" + mp4Src + "'" ;
-		html += "<\/mega-video>";
+		html += "	mp4='" + mp4Src + "' >" ;
+		html += "</mega-video>";
 
 		scope = $rootScope.$new();
 		compiled = $compile(html)
