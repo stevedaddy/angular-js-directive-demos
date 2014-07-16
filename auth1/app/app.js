@@ -55,8 +55,8 @@ angular.module('authDemo1', ['ngRoute'])
 	.controller('MainController', function($scope, userSession) {
 		// debugger;
 		$scope.loggedIn = userSession.loggedIn = false; 
-		$scope.$watch(function(){
-			$scope.loggedIn = userSession.loggedIn;
+		$scope.$watch(function(){return userSession.loggedIn}, function(newVal, oldVal){
+			$scope.loggedIn = newVal;
 		})
 	})
 	.controller('LoginController', function(userSession, $location) {
