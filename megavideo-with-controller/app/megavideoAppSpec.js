@@ -7,7 +7,8 @@ describe('megaVideo', function() {
 		mp4Src,
 		oggSrc,
 		videoPlayer,
-		transcludedText;
+		transcludedText,
+		ctrl;
 
 	beforeEach(module("megaVideoDemo"));
 	beforeEach(module('mega-video.html'));
@@ -63,7 +64,7 @@ describe('volumeSlider', function() {
 		volumeSlider,
 		initialVolume,
 		changedVolume,
-		videoPlayer;
+		ctrl;
 
 	beforeEach(module("megaVideoDemo"));
 	beforeEach(module('mega-video.html'));
@@ -88,11 +89,12 @@ describe('volumeSlider', function() {
 		scope.$digest();
 	}));
 	it('should have a functioning volume slider with correct initial position', function(){
-		videoPlayer = element.find('video')[0];
 		volumeSlider = element.find('.ui-slider');
-		expect(volumeSlider).toBeTruthy();
 		expect(volumeSlider.slider("option", "value")).toBe(parseFloat(initialVolume));
+		
+		ctrl = element.data('$megaVideoController');
+		spyOn(ctrl, 'setVolume');
 		volumeSlider.slider("option", "value", changedVolume);
-		expect(videoPlayer.volume).toBe(changedVolume);
+		expect(ctrl.setVolume).toHaveBeenCalledWith(changedVolume);
 	})
 });
