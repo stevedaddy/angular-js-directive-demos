@@ -1,6 +1,10 @@
-<div class="yo">
-	<strong>Yo!</strong>
-	<div class="yo-llama"></div>
-	<strong>Yo!</strong>
-	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum obcaecati tempora ullam laboriosam deleniti, quisquam sapiente aspernatur consequuntur illo voluptas, modi suscipit dolorem rerum optio eligendi impedit quidem architecto neque.</p>
-</div>
+<form name="form" class="yo">
+    Model value : {{ rating }}<br>
+    Min value: <input type="text" size="3" ng-model="minRating"><br>
+    Max value: <input type="text" size="3" ng-model="maxRating"><br>
+    Form has been modified : {{ form.$dirty }}<br>
+    Form is valid : {{ form.$valid }}
+    <hr>
+    <div min="minRating" max="maxRating" ng-model="rating" rn-stepper></div>
+    <div class="yo-llama"></div>
+</form>

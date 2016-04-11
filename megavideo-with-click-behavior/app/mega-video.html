@@ -1,13 +1,14 @@
-<video 
-	width="{{ video.width }}" 
-	height="{{ video.height }}" 
-	ng-click="video.togglePlay()" 
-	ng-dblclick="video.stop()">
+<video
+        width="{{ video.width }}"
+        height="{{ video.height }}"
+        ng-click="video.togglePlay()"
+        ng-dblclick="video.stop()"
+        >
 
-	<source  
-		ng-repeat="source in sources" 
-		ng-src="{{ source.src }}" 
-		type="{{ source.type }}">
-	</source>
+    <source
+            ng-repeat="source in sources"
+            ng-src="{{ source.src }}"
+            type="{{ source.type }}">
+    </source>
 
 </video>

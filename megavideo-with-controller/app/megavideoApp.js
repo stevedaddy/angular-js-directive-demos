@@ -19,7 +19,9 @@ angular.module('megaVideoDemo', []).
                     stop: function() {
                         videoPlayer.pause();
                         videoPlayer.currentTime = 0;
-                        $scope.video.status = 'stop'
+
+
+                        //$scope.video.status = 'stop';
                     },
                     togglePlay: function() {
                         $scope.video.status == 'play' ? this.pause() : this.play();
