@@ -1,73 +1,75 @@
-module.exports = function(config) {
-  config.set({
+// Karma configuration
+// Generated on Mon Apr 11 2016 04:08:25 GMT-0700 (Pacific Daylight Time)
 
-    // base path that will be used to resolve all patterns (eg. files, exclude)
-    basePath: '',
+module.exports = function (config) {
+    config.set({
 
-
-    // frameworks to use
-    // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['jasmine'],
+        // base path that will be used to resolve all patterns (eg. files, exclude)
+        basePath: '',
 
 
-    // list of files / patterns to load in the browser
-    files: [
-      'node_modules/jquery/dist/jquery.min.js',
-      'app/bower_components/angular/angular.min.js',
-      'app/bower_components/angular-mocks/angular-mocks.js',
-      'app/*.js', // this will pick up both spec and app
-      'app/*.html' // for our directive templates
-    ],
+        // frameworks to use
+        // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
+        frameworks: ['jasmine'],
 
 
-    // list of files to exclude
-    exclude: [
-      
-    ],
+
+        // list of files / patterns to load in the browser
+        files: [
+            'node_modules/jquery/dist/jquery.min.js',
+            'app/bower_components/angular/angular.min.js',
+            'app/bower_components/angular-mocks/angular-mocks.js',
+            'app/*.js', // this will pick up both spec and app
+            'app/*.html' // for your directive templates
+        ],
+
+// .... skipping stuff
+        preprocessors: {
+            'app/*.html': 'ng-html2js'
+        },
+
+        ngHtml2JsPreprocessor: {
+            // strip app from the file path
+            stripPrefix: 'app/'
+        },
+        // list of files to exclude
+        exclude: [],
 
 
-    // preprocess matching files before serving them to the browser
-    // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
-    preprocessors: {
-        'app/*.html': 'ng-html2js'
-    
-    },
-
-    ngHtml2JsPreprocessor: {
-        // strip app from the file path
-        stripPrefix: 'app/'
-    },
-
-    // test results reporter to use
-    // possible values: 'dots', 'progress'
-    // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress'],
+        // test results reporter to use
+        // possible values: 'dots', 'progress'
+        // available reporters: https://npmjs.org/browse/keyword/karma-reporter
+        reporters: ['progress'],
 
 
-    // web server port
-    port: 9876,
+        // web server port
+        port: 9876,
 
 
-    // enable / disable colors in the output (reporters and logs)
-    colors: true,
+        // enable / disable colors in the output (reporters and logs)
+        colors: true,
 
 
-    // level of logging
-    // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
-    logLevel: config.LOG_INFO,
+        // level of logging
+        // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
+        logLevel: config.LOG_INFO,
 
 
-    // enable / disable watching file and executing tests whenever any file changes
-    autoWatch: false,
+        // enable / disable watching file and executing tests whenever any file changes
+        autoWatch: true,
 
 
-    // start these browsers
-    // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome'],
+        // start these browsers
+        // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
+        browsers: ['Chrome'],
 
 
-    // Continuous Integration mode
-    // if true, Karma captures browsers, runs the tests and exits
-    singleRun: true
-  });
-};
+        // Continuous Integration mode
+        // if true, Karma captures browsers, runs the tests and exits
+        singleRun: false,
+
+        // Concurrency level
+        // how many browser should be started simultaneous
+        concurrency: Infinity
+    })
+}

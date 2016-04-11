@@ -1,5 +1,5 @@
 // Karma configuration
-// Generated on Sun Apr 03 2016 17:01:47 GMT+0500 (PKT)
+// Generated on Mon Apr 11 2016 03:51:32 GMT-0700 (Pacific Daylight Time)
 
 module.exports = function(config) {
   config.set({
@@ -15,10 +15,10 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'app/bower_components/angular/angular.js',
-      'app/bower_components/angular-mocks/angular-mocks.js',
-      'app/app.js',
-      'app/appSpec.js'
+    'app/bower_components/angular/angular.js',
+    'app/bower_components/angular-mocks/angular-mocks.js',
+    'app/app.js',
+    'app/appSpec.js'
     ],
 
 

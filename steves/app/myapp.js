@@ -7,6 +7,7 @@ module.directive('optIn', function() {
         replace: true
     }
 });
+
 module.directive('showErrors', function ($timeout, showErrorsConfig) {
         var getShowSuccess, linkFn;
         getShowSuccess = function (options) {
@@ -69,25 +70,6 @@ module.directive('showErrors', function ($timeout, showErrorsConfig) {
         };
     }
 );
-module.directive('sync', function(){
-    return {
-        restrict: 'A',
-        link: function(scope, elem, attrs){
-            sync(scope, scope.$parent, attrs.ngModel);
-
-            /* keep a property in sync between two scopes */
-            function sync(a, b, prop){
-                a.$watch(prop, update(b));
-                b.$watch(prop, update(a));
-                function update(s){
-                    return function(){
-                        if(this.last !== s[prop]) s[prop] = this.last;
-                    };
-                }
-            }
-        }
-    };
-});
 module.provider('showErrorsConfig', function () {
     var _showSuccess;
     _showSuccess = false;
