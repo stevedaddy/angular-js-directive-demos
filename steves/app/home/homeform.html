@@ -1,0 +1,38 @@
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-lg-6">
+        <div class="opt-in"><div ng-transclude></div></div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-lg-6">
+        <form name="userForm" novalidate>
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 col-lg-6">
+                    <div class="form-group"
+                         show-errors='{showSuccess: true}'>
+                        <label for="name">First Name:</label>
+                        <input type="text" class="form-control" name="name" id="name" placeholder="First Name" required data-ng-minlength="3" ng-model="user.name" >
+                        <p class="help-block" ng-if="userForm.name.$error.required">The user's name is required</p>
+                        <p class="help-block" ng-if="userForm.name.$error.minlength">The name must be at least 3 characters.</p>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-lg-6">
+                    <div class="form-group"
+                         show-errors='{showSuccess: true}'>
+                        <label for="lastname">Last Name:</label>
+                        <input type="text" class="form-control" name="lastname" id="lastname" placeholder="Last Name" required data-ng-minlength="3" ng-model="user.lastname" >
+                        <p class="help-block" ng-if="userForm.lastname.$error.required">The user's name is required</p>
+                        <p class="help-block" ng-if="userForm.lastname.$error.minlength">The name must be at least 3 characters.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group"
+                 show-errors='{showSuccess: true}'>
+                <label for="email">Email:</label>
+                <input type="email" class="form-control" name="email" id="email" placeholder="you@email.com" required ng-model="user.email">
+                <p class="help-block" ng-if="userForm.email.$error.required">The user's email is required</p>
+                <p class="help-block" ng-if="userForm.email.$error.email">The email address is invalid</p>
+            </div>
+            <button class="btn btn-primary" ng-click="save()">Give us your info</button>
+            <!--<button class="btn btn-link" ng-click="reset()">Reset</button>-->
+        </form>
+    </div>
+</div>
